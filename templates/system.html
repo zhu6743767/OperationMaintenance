@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container">
+        <div style="margin-bottom: 10px;">
+            <a class="btn btn-success" href="/system/add/" > <!--target="_blank"-->
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+             新建系统名称
+            </a>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+              <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+              系统名称列表
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>系统名称</th>
+                        <th>系统名称服务端口</th>
+                        <th>系统名称环境</th>
+                        <th>编辑</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for obj in queryset %}
+                      <tr>
+                        <th scope="row">{{ obj.id }}</th>
+                        <td><a href="#">{{ obj.BusinessName }}</a></td>
+                        <td>{{ obj.BusinessServerPort}}</td>
+                        <td>{{ obj.BusinessServerEnv}}</td>
+                        <td>
+                          <a class="btn btn-primary btn-xs" href="/depart/{{ obj.id }}/edit/">编辑</a>
+                          <a class="btn btn-danger btn-xs" href="/depart/delete/?nid={{ obj.id}}">删除</a>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
